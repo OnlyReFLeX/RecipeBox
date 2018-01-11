@@ -6,9 +6,10 @@
       #recipe_info
         h1= @recipe.title
         p.description= @recipe.description
-        p
-          Представил
-          = @recipe.user.email
+        p Представил
+        = @recipe.user.email
+
+
   .row
     .col-md-6
       #ingredients
@@ -25,5 +26,6 @@
   .row
     .col-md-12
       = link_to 'Назад', root_path, class: 'btn btn-default'
-      = link_to 'Ред.', edit_recipe_path, class: 'btn btn-default'
-      = link_to 'Удалить', recipe_path, method: :delete, class: 'btn btn-default', data: {confirm: "Вы уверены?"}
+      - if user_signed_in?
+        = link_to 'Ред.', edit_recipe_path, class: 'btn btn-default'
+        = link_to 'Удалить', recipe_path, method: :delete, class: 'btn btn-default', data: {confirm: "Вы уверены?"}
